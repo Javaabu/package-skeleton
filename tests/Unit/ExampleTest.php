@@ -2,7 +2,7 @@
 
 namespace Javaabu\{YourPackage}\Tests\Unit;
 
-use PHPUnit\Framework\TestCase;
+use Javaabu\{YourPackage}\Tests\TestCase;
 
 class ExampleTest extends TestCase
 {

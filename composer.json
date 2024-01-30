@@ -15,7 +15,7 @@
         "illuminate/testing": "^9.0 || ^10.0"
     },
     "require-dev": {
-        "mockery/mockery": "^1.4.4",
+        "orchestra/testbench-browser-kit": "^7.0 || ^8.0",
         "phpunit/phpunit": "^9.5"
     },
     "autoload": {

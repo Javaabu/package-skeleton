@@ -2,11 +2,13 @@
 
 namespace Javaabu\{YourPackage}\Tests;
 
-use Illuminate\Foundation\Testing\TestCase as BaseTestCase;
+use Orchestra\Testbench\BrowserKit\TestCase as BaseTestCase;
 use Javaabu\{YourPackage}\{YourPackage}ServiceProvider;
 
 abstract class TestCase extends BaseTestCase
 {
+
+    protected $baseUrl = 'http://localhost';
 
     public function setUp(): void
     {
