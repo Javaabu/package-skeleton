@@ -9,7 +9,7 @@
 
 
 ## Package setup instructions
-1. Search and replace the following instructions:
+1. Search and replace the following:
 {your-package}
 {YourPackage}
 {Your Package}
