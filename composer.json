@@ -1,0 +1,42 @@
+{
+    "name": "javaabu/{your-package}",
+    "description": "{package description}",
+    "homepage": "https://github.com/Javaabu/{your-package}",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Arushad Ahmed",
+            "email": "arushad@javaabu.com"
+        }
+    ],
+    "require": {
+        "php": "^8.1",
+        "illuminate/support": "^9.0 || ^10.0",
+        "illuminate/testing": "^9.0 || ^10.0"
+    },
+    "require-dev": {
+        "mockery/mockery": "^1.4.4",
+        "phpunit/phpunit": "^9.5"
+    },
+    "autoload": {
+        "psr-4": {
+            "Javaabu\\{YourPackage}\\": "src/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Javaabu\\{YourPackage}\\Tests\\": "tests/"
+        }
+    },
+    "extra": {
+        "branch-alias": {
+            "dev-main": "1.0-dev"
+        },
+        "laravel": {
+            "providers": [
+                "Javaabu\\{YourPackage}\\{YourPackage}ServiceProvider"
+            ]
+        }
+    },
+    "minimum-stability": "stable"
+}
