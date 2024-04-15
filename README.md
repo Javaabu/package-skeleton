@@ -17,7 +17,9 @@
 
 2. Rename {YourPackage}ServiceProvider.php
 
-3. Remove these instructions
+3. Rename config/{your-package}.php 
+
+4. Remove these instructions
 
 
 ## Documentation

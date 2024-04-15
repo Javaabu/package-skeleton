@@ -14,7 +14,7 @@ class {YourPackage}ServiceProvider extends ServiceProvider
         // declare publishes
         if ($this->app->runningInConsole()) {
             $this->publishes([
-                __DIR__ . '/../config/config.php' => config_path('{your-package}.php'),
+                __DIR__ . '/../config/{your-package}.php' => config_path('{your-package}.php'),
             ], '{your-package}-config');
         }
     }
@@ -25,6 +25,6 @@ class {YourPackage}ServiceProvider extends ServiceProvider
     public function register()
     {
         // merge package config with user defined config
-        $this->mergeConfigFrom(__DIR__ . '/../config/config.php', '{your-package}');
+        $this->mergeConfigFrom(__DIR__ . '/../config/{your-package}.php', '{your-package}');
     }
 }
