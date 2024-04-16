@@ -2,7 +2,7 @@
 
 [![Latest Version on Packagist](https://img.shields.io/packagist/v/javaabu/{your-package}.svg?style=flat-square)](https://packagist.org/packages/javaabu/{your-package})
 [![Test Status](../../actions/workflows/run-tests.yml/badge.svg)](../../actions/workflows/run-tests.yml)
-[![Quality Score](https://img.shields.io/scrutinizer/g/javaabu/{your-package}.svg?style=flat-square)](https://scrutinizer-ci.com/g/javaabu/{your-package})
+[![Code Style Status](../../actions/workflows/php-cs-fixer.yml/badge.svg)](../../actions/workflows/php-cs-fixer.yml)
 [![Total Downloads](https://img.shields.io/packagist/dt/javaabu/{your-package}.svg?style=flat-square)](https://packagist.org/packages/javaabu/{your-package})
 
 {package description}
