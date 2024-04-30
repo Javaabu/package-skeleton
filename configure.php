@@ -146,12 +146,20 @@ class PackageSetup
 
     public function getPackageAuthorName(): string
     {
-        return $this->packageAuthorName ?? $this->getDefaultAuthorName();
+        if (empty($this->packageAuthorName)) {
+            return $this->getDefaultAuthorName();
+        }
+
+        return $this->packageAuthorName;
     }
 
     public function getPackageAuthorEmail(): string
     {
-        return $this->packageAuthorEmail ?? $this->getDefaultAuthorEmail();
+        if (empty($this->packageAuthorEmail)) {
+            return $this->getDefaultAuthorEmail();
+        }
+
+        return $this->packageAuthorEmail;
     }
 
     public function getGithubUsername(): string
