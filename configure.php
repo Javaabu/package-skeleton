@@ -29,6 +29,15 @@ $packageSetup->renameFiles();
 $packageSetup->removeReadmeInstructions();
 
 echo "Package setup completed successfully\n";
+echo "This file will be auto destructed in 5 seconds\n";
+$sec = 5;
+while ($sec > 0) {
+    echo "This file will be auto destructed in {$sec} seconds\n";
+    sleep(1);
+    $sec--;
+}
+
+unlink(__FILE__);
 
 
 class PackageSetup
