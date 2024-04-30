@@ -1,23 +1,37 @@
 <?php
 $packageSetup = new PackageSetup();
 
-//echo "Enter the package name: ";
-//$package_name = trim(fgets(STDIN));
-//
-//echo "Enter the package description: ";
-//$package_description = trim(fgets(STDIN));
-//
-//$packageSetup->setPackageName($package_name);
-//$packageSetup->setPackageTitle($package_name);
-//$packageSetup->setPackageClassName($package_name);
-//$packageSetup->setPackageDescription($package_description);
-//
-//$packageSetup->replacePackageName();
-//$packageSetup->replacePackageTitle();
-//$packageSetup->replacePackageClassName();
-//$packageSetup->replacePackageDescription();
-//
-//echo "Package name has been set to: " . $packageSetup->getPackageName() . "\n";
+$defaultAuthorName = $packageSetup->getDefaultAuthorName();
+$defaultAuthorEmail = $packageSetup->getDefaultAuthorEmail();
+
+
+echo "Enter the package name: ";
+$package_name = trim(fgets(STDIN));
+
+echo "Enter the package description: ";
+$package_description = trim(fgets(STDIN));
+
+echo "Package author name [default: {$defaultAuthorName}]: ";
+$author_name = trim(fgets(STDIN));
+
+echo "Package author email [default: {$defaultAuthorEmail}]: ";
+$author_email = trim(fgets(STDIN));
+
+$packageSetup->setPackageName($package_name);
+$packageSetup->setPackageTitle($package_name);
+$packageSetup->setPackageClassName($package_name);
+$packageSetup->setPackageDescription($package_description);
+$packageSetup->setPackageAuthorName($author_name);
+$packageSetup->setPackageAuthorEmail($author_email);
+
+$packageSetup->replacePackageName();
+$packageSetup->replacePackageTitle();
+$packageSetup->replacePackageClassName();
+$packageSetup->replacePackageDescription();
+$packageSetup->replacePackageAuthorName();
+$packageSetup->replacePackageAuthorEmail();
+
+echo "Package name has been set to: " . $packageSetup->getPackageName() . "\n";
 
 
 class PackageSetup
@@ -158,14 +172,14 @@ class PackageSetup
         file_put_contents($file, $content);
     }
 
-    public function getDefaultAuthorName()
+    public function getDefaultAuthorName(): string
     {
-
+        return $this->stringToTitle(strtolower(trim(shell_exec('git config user.name'))));
     }
 
-    public function getDefaultAuthorEmail()
+    public function getDefaultAuthorEmail(): string
     {
-
+        return strtolower(trim(shell_exec('git config user.email')));
     }
 
     public function getFiles(): array
