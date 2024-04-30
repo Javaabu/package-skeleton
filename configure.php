@@ -3,16 +3,12 @@
 
 $packageSetup = new PackageSetup();
 
-foreach ($packageSetup->getFiles() as $file) {
-    echo "Processing file: " . $file . "\n";
-}
+echo "Enter the package name:";
+$package_name = trim(fgets(STDIN));
+$packageSetup->setPackageName($package_name);
+$packageSetup->replacePackageName('./README.md');
 
-//echo "Enter the package name:";
-//$package_name = trim(fgets(STDIN));
-//$packageSetup->setPackageName($package_name);
-//$packageSetup->replacePackageName('./README.md');
-//
-//echo "Package name has been set to: " . $packageSetup->getPackageName() . "\n";
+echo "Package name has been set to: " . $packageSetup->getPackageName() . "\n";
 
 
 class PackageSetup
@@ -29,9 +25,11 @@ class PackageSetup
         return $this->packageName;
     }
 
-    public function replacePackageName($file): void
+    public function replacePackageName(): void
     {
-        $this->replacePlaceholder($file, '{your-package}', $this->getPackageName());
+        foreach ($this->getFiles() as $file) {
+            $this->replacePlaceholder($file, '{your-package}', $this->getPackageName());
+        }
     }
 
     public function replacePlaceholder($file, $placeholder, $value): void
