@@ -43,12 +43,26 @@ class PackageSetup
 
     public function getFiles(): array
     {
+        $skipDirectories = array('vendor', '.git', '.idea', 'node_modules');
         $iterator = new RecursiveIteratorIterator(new RecursiveDirectoryIterator(__DIR__));
         $files = array();
 
         foreach ($iterator as $file) {
             // Skip if it's not a file
             if (!$file->isFile()) {
+                continue;
+            }
+
+            // Skip if it's in the directory we want to skip
+            $skip = false;
+            foreach ($skipDirectories as $skipDirectory) {
+                if (str_contains($file->getPathname(), $skipDirectory)) {
+                    $skip = true;
+                    break;
+                }
+            }
+
+            if ($skip) {
                 continue;
             }
 
