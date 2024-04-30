@@ -5,6 +5,14 @@
 [![Code Style Status](../../actions/workflows/php-cs-fixer.yml/badge.svg)](../../actions/workflows/php-cs-fixer.yml)
 [![Total Downloads](https://img.shields.io/packagist/dt/javaabu/{your-package}.svg?style=flat-square)](https://packagist.org/packages/javaabu/{your-package})
 
+---
+This repo can be used to scaffold a Laravel package. Follow these steps to get started:
+1. Press the "Use this template" button on the top right corner of this repo to create a new repo with the contents of this skeleton.
+2. Run `php ./configure.php` to run a script that will replace all placeholders throughout all the files.
+3. Update the README.md file with the package information.
+4. If nothing works, ask Arushad.
+---
+
 {package description}
 
 
