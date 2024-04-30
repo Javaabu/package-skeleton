@@ -6,6 +6,7 @@
 [![Total Downloads](https://img.shields.io/packagist/dt/javaabu/{your-package}.svg?style=flat-square)](https://packagist.org/packages/javaabu/{your-package})
 
 ---
+## Instructions
 This repo can be used to scaffold a Laravel package. Follow these steps to get started:
 1. Press the "Use this template" button on the top right corner of this repo to create a new repo with the contents of this skeleton.
 2. Run `php ./configure.php` to run a script that will replace all placeholders throughout all the files.
@@ -13,25 +14,8 @@ This repo can be used to scaffold a Laravel package. Follow these steps to get s
 4. If nothing works, ask Arushad.
 ---
 
+## Introduction
 {package description}
-
-
-## Package setup instructions
-1. Search and replace the following:
-{your-package}
-{your_package}
-{author_name}
-{author_email}
-{YourPackage}
-{Your Package}
-{package description}
-
-2. Rename {YourPackage}ServiceProvider.php
-
-3. Rename config/{your-package}.php 
-
-4. Remove these instructions
-
 
 ## Documentation
 

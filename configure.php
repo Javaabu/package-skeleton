@@ -19,6 +19,7 @@ $author_email = trim(fgets(STDIN));
 $packageSetup->setPackage($package_name, $package_description, $author_name, $author_email);
 $packageSetup->replacePlaceholders();
 $packageSetup->renameConfigFile();
+$packageSetup->removeReadmeInstructions();
 
 echo "Package setup completed successfully\n";
 
@@ -265,4 +266,12 @@ class PackageSetup
         rename($config_file, $new_config_file);
     }
 
+    public function removeReadmeInstructions(): void
+    {
+        $readme_file = __DIR__ . '/README.md';
+        $content = file_get_contents($readme_file);
+        // Remove from --- to ---
+        $content = preg_replace('/---(.*)---/s', '', $content);
+        file_put_contents($readme_file, $content);
+    }
 }
