@@ -18,6 +18,7 @@ $author_email = trim(fgets(STDIN));
 
 $packageSetup->setPackage($package_name, $package_description, $author_name, $author_email);
 $packageSetup->replacePlaceholders();
+$packageSetup->renameConfigFile();
 
 echo "Package setup completed successfully\n";
 
@@ -254,6 +255,13 @@ class PackageSetup
         $string = str_replace(array('_', '-'), ' ', $string);
         $title =  ucwords($string);
         return str_replace(' ', '', $title);
+    }
+
+    public function renameConfigFile(): void
+    {
+        $config_file = __DIR__ . '/config/{your-package}.php';
+        $new_config_file = __DIR__ . "/config/{$this->getPackageName()}.php";
+        rename($config_file, $new_config_file);
     }
 
 }
