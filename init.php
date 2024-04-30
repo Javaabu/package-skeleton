@@ -7,7 +7,7 @@ $defaultAuthorEmail = $packageSetup->getDefaultAuthorEmail();
 $package_name = '';
 
 while (empty($package_name)) {
-    echo "Enter the package name: ";
+    echo "Enter the package name (snake case): ";
     $package_name = trim(fgets(STDIN));
 }
 
