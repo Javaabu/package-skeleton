@@ -8,6 +8,7 @@ echo "Enter the package description: ";
 $package_description = trim(fgets(STDIN));
 
 $packageSetup->setPackageName($package_name);
+$packageSetup->setPackageKeyWords($package_name);
 $packageSetup->setPackageTitle($package_name);
 $packageSetup->setPackageClassName($package_name);
 $packageSetup->setPackageDescription($package_description);
@@ -23,14 +24,18 @@ echo "Package name has been set to: " . $packageSetup->getPackageName() . "\n";
 class PackageSetup
 {
     private string $packageName;
+    private string $packageKeyWordName;
     private string $packageTitle;
     private string $packageClassName;
     private string $packageDescription;
+    private string $packageAuthorName;
+    private string $packageAuthorEmail;
 
 
     public function setPackageName(string $name): void
     {
         $this->packageName = $this->stringToSlug($name);
+        $this->packageKeyWordName = $this->stringToSlug($name, '_');
     }
 
     public function setPackageTitle(string $title): void
@@ -48,9 +53,24 @@ class PackageSetup
         $this->packageDescription = $description;
     }
 
+    public function setPackageAuthorName(string $author_name = null): void
+    {
+        $this->packageAuthorName = $author_name;
+    }
+
+    public function setPackageAuthorEmail(string $author_email = null): void
+    {
+        $this->packageAuthorEmail = $author_email;
+    }
+
     public function getPackageName(): string
     {
         return $this->packageName;
+    }
+
+    public function getPackageKeyWords(): string
+    {
+        return $this->packageKeyWordName;
     }
 
     public function getPackageTitle(): string
@@ -68,10 +88,27 @@ class PackageSetup
         return $this->packageDescription;
     }
 
+    public function getPackageAuthorName(): string
+    {
+        return $this->packageAuthorName;
+    }
+
+    public function getPackageAuthorEmail(): string
+    {
+        return $this->packageAuthorEmail;
+    }
+
     public function replacePackageName(): void
     {
         foreach ($this->getFiles() as $file) {
             $this->replacePlaceholder($file, '{your-package}', $this->getPackageName());
+        }
+    }
+
+    public function replacePackageKeyWords(): void
+    {
+        foreach ($this->getFiles() as $file) {
+            $this->replacePlaceholder($file, '{your_package}', $this->getPackageKeyWords());
         }
     }
 
@@ -93,6 +130,20 @@ class PackageSetup
     {
         foreach ($this->getFiles() as $file) {
             $this->replacePlaceholder($file, '{package description}', $this->getPackageDescription());
+        }
+    }
+
+    public function replacePackageAuthorName(): void
+    {
+        foreach ($this->getFiles() as $file) {
+            $this->replacePlaceholder($file, '{author_name}', $this->getPackageAuthorName());
+        }
+    }
+
+    public function replacePackageAuthorEmail(): void
+    {
+        foreach ($this->getFiles() as $file) {
+            $this->replacePlaceholder($file, '{author_email}', $this->getPackageAuthorEmail());
         }
     }
 
@@ -142,9 +193,9 @@ class PackageSetup
         return $files;
     }
 
-    public function stringToSlug($string): string
+    public function stringToSlug($string, string $separator = '-'): string
     {
-        $slug = str_replace(' ', '-', $string);
+        $slug = str_replace(' ', "{$separator}", $string);
         return strtolower($slug);
     }
 

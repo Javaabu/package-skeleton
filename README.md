@@ -19,6 +19,9 @@ This repo can be used to scaffold a Laravel package. Follow these steps to get s
 ## Package setup instructions
 1. Search and replace the following:
 {your-package}
+{your_package}
+{author_name}
+{author_email}
 {YourPackage}
 {Your Package}
 {package description}
