@@ -4,7 +4,6 @@ $packageSetup = new PackageSetup();
 $defaultAuthorName = $packageSetup->getDefaultAuthorName();
 $defaultAuthorEmail = $packageSetup->getDefaultAuthorEmail();
 
-
 echo "Enter the package name: ";
 $package_name = trim(fgets(STDIN));
 
@@ -17,21 +16,10 @@ $author_name = trim(fgets(STDIN));
 echo "Package author email [default: {$defaultAuthorEmail}]: ";
 $author_email = trim(fgets(STDIN));
 
-$packageSetup->setPackageName($package_name);
-$packageSetup->setPackageTitle($package_name);
-$packageSetup->setPackageClassName($package_name);
-$packageSetup->setPackageDescription($package_description);
-$packageSetup->setPackageAuthorName($author_name);
-$packageSetup->setPackageAuthorEmail($author_email);
+$packageSetup->setPackage($package_name, $package_description, $author_name, $author_email);
+$packageSetup->replacePlaceholders();
 
-$packageSetup->replacePackageName();
-$packageSetup->replacePackageTitle();
-$packageSetup->replacePackageClassName();
-$packageSetup->replacePackageDescription();
-$packageSetup->replacePackageAuthorName();
-$packageSetup->replacePackageAuthorEmail();
-
-echo "Package name has been set to: " . $packageSetup->getPackageName() . "\n";
+echo "Package setup completed successfully\n";
 
 
 class PackageSetup
@@ -44,6 +32,32 @@ class PackageSetup
     private string $packageAuthorName;
     private string $packageAuthorEmail;
 
+    public function setPackage(
+        string $package_name,
+        string $package_description,
+        string $author_name = null,
+        string $author_email = null
+    ): void
+    {
+        $this->setPackageName($package_name);
+        $this->setPackageKeyWord($package_name);
+        $this->setPackageTitle($package_name);
+        $this->setPackageClassName($package_name);
+        $this->setPackageDescription($package_description);
+        $this->setPackageAuthorName($author_name);
+        $this->setPackageAuthorEmail($author_email);
+    }
+
+    public function replacePlaceholders(): void
+    {
+        $this->replacePackageName();
+        $this->replacePackageKeyWords();
+        $this->replacePackageTitle();
+        $this->replacePackageClassName();
+        $this->replacePackageDescription();
+        $this->replacePackageAuthorName();
+        $this->replacePackageAuthorEmail();
+    }
 
     public function setPackageName(string $name): void
     {
@@ -73,11 +87,13 @@ class PackageSetup
 
     public function setPackageAuthorName(string $author_name = null): void
     {
+        $author_name ??= $this->getDefaultAuthorName();
         $this->packageAuthorName = $author_name;
     }
 
     public function setPackageAuthorEmail(string $author_email = null): void
     {
+        $author_email ??= $this->getDefaultAuthorEmail();
         $this->packageAuthorEmail = $author_email;
     }
 
