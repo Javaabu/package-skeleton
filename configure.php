@@ -23,7 +23,7 @@ $author_email = trim(fgets(STDIN));
 echo "Github username: ";
 $github_username = trim(fgets(STDIN));
 
-$packageSetup->setPackage($package_name, $package_description, $author_name, $author_email);
+$packageSetup->setPackage($package_name, $package_description, $author_name, $author_email, $github_username);
 $packageSetup->replacePlaceholders();
 $packageSetup->renameFiles();
 $packageSetup->removeReadmeInstructions();
