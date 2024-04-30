@@ -1,30 +1,29 @@
 <?php
 $packageSetup = new PackageSetup();
 
-echo "Enter the package name: ";
-$package_name = trim(fgets(STDIN));
-
-echo "Enter the package description: ";
-$package_description = trim(fgets(STDIN));
-
-$packageSetup->setPackageName($package_name);
-$packageSetup->setPackageKeyWords($package_name);
-$packageSetup->setPackageTitle($package_name);
-$packageSetup->setPackageClassName($package_name);
-$packageSetup->setPackageDescription($package_description);
-
-$packageSetup->replacePackageName();
-$packageSetup->replacePackageTitle();
-$packageSetup->replacePackageClassName();
-$packageSetup->replacePackageDescription();
-
-echo "Package name has been set to: " . $packageSetup->getPackageName() . "\n";
+//echo "Enter the package name: ";
+//$package_name = trim(fgets(STDIN));
+//
+//echo "Enter the package description: ";
+//$package_description = trim(fgets(STDIN));
+//
+//$packageSetup->setPackageName($package_name);
+//$packageSetup->setPackageTitle($package_name);
+//$packageSetup->setPackageClassName($package_name);
+//$packageSetup->setPackageDescription($package_description);
+//
+//$packageSetup->replacePackageName();
+//$packageSetup->replacePackageTitle();
+//$packageSetup->replacePackageClassName();
+//$packageSetup->replacePackageDescription();
+//
+//echo "Package name has been set to: " . $packageSetup->getPackageName() . "\n";
 
 
 class PackageSetup
 {
     private string $packageName;
-    private string $packageKeyWordName;
+    private string $packageKeyWords;
     private string $packageTitle;
     private string $packageClassName;
     private string $packageDescription;
@@ -35,7 +34,12 @@ class PackageSetup
     public function setPackageName(string $name): void
     {
         $this->packageName = $this->stringToSlug($name);
-        $this->packageKeyWordName = $this->stringToSlug($name, '_');
+
+    }
+
+    public function setPackageKeyWord(string $name): void
+    {
+        $this->packageKeyWords = $this->stringToSlug($name, '_');
     }
 
     public function setPackageTitle(string $title): void
@@ -70,7 +74,7 @@ class PackageSetup
 
     public function getPackageKeyWords(): string
     {
-        return $this->packageKeyWordName;
+        return $this->packageKeyWords;
     }
 
     public function getPackageTitle(): string
@@ -152,6 +156,16 @@ class PackageSetup
         $content = file_get_contents($file);
         $content = str_replace($placeholder, $value, $content);
         file_put_contents($file, $content);
+    }
+
+    public function getDefaultAuthorName()
+    {
+
+    }
+
+    public function getDefaultAuthorEmail()
+    {
+
     }
 
     public function getFiles(): array
