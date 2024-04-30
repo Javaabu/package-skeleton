@@ -20,7 +20,7 @@ $author_name = trim(fgets(STDIN));
 echo "Package author email [default: {$defaultAuthorEmail}]: ";
 $author_email = trim(fgets(STDIN));
 
-echo "Github username: ";
+echo "Package author github username: ";
 $github_username = trim(fgets(STDIN));
 
 $packageSetup->setPackage($package_name, $package_description, $author_name, $author_email, $github_username);
