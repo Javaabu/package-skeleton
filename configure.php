@@ -1,6 +1,4 @@
 <?php
-
-
 $packageSetup = new PackageSetup();
 
 echo "Enter the package name:";
@@ -61,6 +59,10 @@ class PackageSetup
             }
 
             if ($skip) {
+                continue;
+            }
+
+            if ($file->getFilename() === "configure.php") {
                 continue;
             }
 
