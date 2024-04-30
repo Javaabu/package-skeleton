@@ -241,6 +241,7 @@ class PackageSetup
     public function stringToSlug($string, string $separator = '-'): string
     {
         $slug = str_replace(' ', "{$separator}", $string);
+        $slug = str_replace('_', "{$separator}", $slug);
         return strtolower($slug);
     }
 
