@@ -4,8 +4,12 @@ $packageSetup = new PackageSetup();
 $defaultAuthorName = $packageSetup->getDefaultAuthorName();
 $defaultAuthorEmail = $packageSetup->getDefaultAuthorEmail();
 
-echo "Enter the package name: ";
-$package_name = trim(fgets(STDIN));
+$package_name = '';
+
+while (empty($package_name)) {
+    echo "Enter the package name: ";
+    $package_name = trim(fgets(STDIN));
+}
 
 echo "Enter the package description: ";
 $package_description = trim(fgets(STDIN));
@@ -15,6 +19,9 @@ $author_name = trim(fgets(STDIN));
 
 echo "Package author email [default: {$defaultAuthorEmail}]: ";
 $author_email = trim(fgets(STDIN));
+
+echo "Github username: ";
+$github_username = trim(fgets(STDIN));
 
 $packageSetup->setPackage($package_name, $package_description, $author_name, $author_email);
 $packageSetup->replacePlaceholders();
@@ -33,12 +40,14 @@ class PackageSetup
     private string $packageDescription;
     private string $packageAuthorName;
     private string $packageAuthorEmail;
+    private string $githubUsername;
 
     public function setPackage(
         string $package_name,
         string $package_description,
         string $author_name = null,
-        string $author_email = null
+        string $author_email = null,
+        string $github_username = null,
     ): void
     {
         $this->setPackageName($package_name);
@@ -48,6 +57,7 @@ class PackageSetup
         $this->setPackageDescription($package_description);
         $this->setPackageAuthorName($author_name);
         $this->setPackageAuthorEmail($author_email);
+        $this->setGithubUsername($github_username);
     }
 
     public function replacePlaceholders(): void
@@ -59,6 +69,7 @@ class PackageSetup
         $this->replacePackageDescription();
         $this->replacePackageAuthorName();
         $this->replacePackageAuthorEmail();
+        $this->replaceGithubUsername();
     }
 
     public function renameFiles(): void
@@ -105,6 +116,11 @@ class PackageSetup
         $this->packageAuthorEmail = $author_email;
     }
 
+    public function setGithubUsername(string $github_username = null): void
+    {
+        $this->githubUsername = $github_username;
+    }
+
     public function getPackageName(): string
     {
         return $this->packageName;
@@ -138,6 +154,11 @@ class PackageSetup
     public function getPackageAuthorEmail(): string
     {
         return $this->packageAuthorEmail;
+    }
+
+    public function getGithubUsername(): string
+    {
+        return $this->githubUsername;
     }
 
     public function replacePackageName(): void
@@ -186,6 +207,16 @@ class PackageSetup
     {
         foreach ($this->getFiles() as $file) {
             $this->replacePlaceholder($file, '{author_email}', $this->getPackageAuthorEmail());
+        }
+    }
+
+    public function replaceGithubUsername(): void
+    {
+        $authorName = $this->getPackageAuthorName();
+        $githubUsername = $this->getGithubUsername();
+        $replacedContent = "[{$authorName} (@{$githubUsername})](https://github.com/{$githubUsername})";
+        foreach ($this->getFiles() as $file) {
+            $this->replacePlaceholder($file, '{Contributor}', $replacedContent);
         }
     }
 
