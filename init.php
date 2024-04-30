@@ -277,7 +277,7 @@ class PackageSetup
                 continue;
             }
 
-            if ($file->getFilename() === "configure.php") {
+            if ($file->getFilename() === "init.php") {
                 continue;
             }
 

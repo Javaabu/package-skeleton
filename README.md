@@ -9,9 +9,18 @@
 ## Instructions
 This repo can be used to scaffold a Laravel package. Follow these steps to get started:
 1. Press the "Use this template" button on the top right corner of this repo to create a new repo with the contents of this skeleton.
-2. Run `php ./configure.php` to run a script that will replace all placeholders throughout all the files.
-3. Update the README.md file with the package information.
-4. If nothing works, ask Arushad.
+2. Run `php ./init.php` to run a script that will replace all placeholders throughout all the files.
+3. If nothing works, ask Arushad.
+
+Or you can delete `./init.php` and manually replace the below placeholders:
+- {package description}
+- {your-package} // Package name
+- {your_package} // Package key words
+- {Your Package} // Package title
+- {YourPackage} // Package class name
+- {author_name} // Package author name
+- {author_email} // Package author email
+- {Contributor} // Package author link
 ---
 
 ## Introduction
