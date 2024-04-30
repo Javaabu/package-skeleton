@@ -50,6 +50,7 @@ If you discover any security related issues, please email [info@javaabu.com](mai
 
 - [Javaabu Pvt. Ltd.](https://github.com/javaabu)
 - [Arushad Ahmed (@dash8x)](http://arushad.com)
+- {Contributor}
 - [All Contributors](../../contributors)
 
 ## License

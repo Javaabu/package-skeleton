@@ -18,7 +18,7 @@ $author_email = trim(fgets(STDIN));
 
 $packageSetup->setPackage($package_name, $package_description, $author_name, $author_email);
 $packageSetup->replacePlaceholders();
-$packageSetup->renameConfigFile();
+$packageSetup->renameFiles();
 $packageSetup->removeReadmeInstructions();
 
 echo "Package setup completed successfully\n";
@@ -59,6 +59,12 @@ class PackageSetup
         $this->replacePackageDescription();
         $this->replacePackageAuthorName();
         $this->replacePackageAuthorEmail();
+    }
+
+    public function renameFiles(): void
+    {
+        $this->renameConfigFile();
+        $this->renameServiceProviderFile();
     }
 
     public function setPackageName(string $name): void
@@ -264,6 +270,13 @@ class PackageSetup
         $config_file = __DIR__ . '/config/{your-package}.php';
         $new_config_file = __DIR__ . "/config/{$this->getPackageName()}.php";
         rename($config_file, $new_config_file);
+    }
+
+    public function renameServiceProviderFile(): void
+    {
+        $service_provider_file = __DIR__ . '/src/{YourPackage}ServiceProvider.php';
+        $new_service_provider_file = __DIR__ . "/src/{$this->getPackageClassName()}ServiceProvider.php";
+        rename($service_provider_file, $new_service_provider_file);
     }
 
     public function removeReadmeInstructions(): void
