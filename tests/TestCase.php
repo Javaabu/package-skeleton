@@ -4,6 +4,7 @@ namespace Javaabu\{YourPackage}\Tests;
 
 use Orchestra\Testbench\TestCase as BaseTestCase;
 use Javaabu\{YourPackage}\{YourPackage}ServiceProvider;
+use Javaabu\{YourPackage}\Tests\TestSupport\Providers\TestServiceProvider;
 
 abstract class TestCase extends BaseTestCase
 {
@@ -20,6 +21,9 @@ abstract class TestCase extends BaseTestCase
 
     protected function getPackageProviders($app)
     {
-        return [{YourPackage}ServiceProvider::class];
+        return [
+            {YourPackage}ServiceProvider::class,
+            TestServiceProvider::class
+        ];
     }
 }
