@@ -42,21 +42,21 @@ unlink(__FILE__);
 
 class PackageSetup
 {
-    private string $packageName;
-    private string $packageKeyWords;
-    private string $packageTitle;
-    private string $packageClassName;
-    private string $packageDescription;
-    private string $packageAuthorName;
-    private string $packageAuthorEmail;
-    private string $githubUsername;
+    private ?string $packageName;
+    private ?string $packageKeyWords;
+    private ?string $packageTitle;
+    private ?string $packageClassName;
+    private ?string $packageDescription;
+    private ?string $packageAuthorName;
+    private ?string $packageAuthorEmail;
+    private ?string $githubUsername;
 
     public function setPackage(
         string $package_name,
         string $package_description,
-        string $author_name = null,
-        string $author_email = null,
-        string $github_username = null,
+        ?string $author_name = null,
+        ?string $author_email = null,
+        ?string $github_username = null,
     ): void
     {
         $this->setPackageName($package_name);
@@ -113,17 +113,17 @@ class PackageSetup
         $this->packageDescription = $description;
     }
 
-    public function setPackageAuthorName(string $author_name = null): void
+    public function setPackageAuthorName(?string $author_name = null): void
     {
         $this->packageAuthorName = $author_name;
     }
 
-    public function setPackageAuthorEmail(string $author_email = null): void
+    public function setPackageAuthorEmail(?string $author_email = null): void
     {
         $this->packageAuthorEmail = $author_email;
     }
 
-    public function setGithubUsername(string $github_username = null): void
+    public function setGithubUsername(?string $github_username = null): void
     {
         $this->githubUsername = $github_username;
     }
